@@ -1,9 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import Body from "./Body";
-
-//import Home from "./pages/Home";
 import Addmovies from "./Addmovies";
-//import MovieDetails from "./pages/MovieDetails";
+import Viewdetail from "./Viewdetail";
 
 const Router = () => {
     return (
@@ -13,6 +11,9 @@ const Router = () => {
             </Route>
             <Route exact path="/add-movie">
                 <Addmovies />
+            </Route>
+            <Route exact path="/:movieId">
+                <Viewdetail/>
             </Route>
         </Switch>
     )

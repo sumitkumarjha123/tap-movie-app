@@ -2,18 +2,20 @@ import axios from 'axios';
 import React from 'react'
 import { Card, Button } from "react-bootstrap"
 import { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router';
 import { Alert } from 'react-bootstrap';
 import Loading from './Loading';
 import Router from './Router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap"
+import Viewdetail from './Viewdetail';
 export default function Body() {
     const [movies, setmovies] = useState([])
     const [viewdetail, setviewdetail] = useState([])
     const [error, setError] = useState(null)
     const [loader, setlodar] = useState(false)
     const [search, setsearch] = useState(movies)
+    const history=useHistory();
     useEffect(() => {
         setlodar(true);
         axios.get("http://localhost:9000/movies")
@@ -23,11 +25,10 @@ export default function Body() {
                 setmovies(res.data.movies)
             }).catch(err => { console.log(err) })
     }, [])
-    const arr = [];
-    const onClickViewMovie = (m) => {
-        return (
-            <h1>{m.title}</h1>
-        )
+    //const arr = [];
+    const onClickViewMovie = ({id}) => {
+        history.push(`/${id}`);
+        <Viewdetail movieId={id}/>
     }
     const onClickSearch = () => {
         const searchElement = document.querySelector('[name="searchText"]');
@@ -82,11 +83,6 @@ export default function Body() {
                         )
 
                     })}
-
-                <div>
-                    {arr.map(u => u.title)}
-                    <h1>{viewdetail.title}</h1>
-                </div>
 
             </div>
         </>

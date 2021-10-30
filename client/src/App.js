@@ -6,9 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 import Router from './Router';
 import { Container } from 'react-bootstrap';
 import Body from './Body';
-//import Searching from './Searching';
-//import Search from './Search';
-//import Searching from './Searching';
 function App() {
   return (
      <>
